@@ -76,7 +76,7 @@ class wp248_cpt {
 
 		$this->load_dependencies();
 		$this->set_locale();
-		$this->define_admin_hooks();
+		$this->define_modules_hooks();
 		$this->define_public_hooks();
 
 	}
@@ -112,15 +112,15 @@ class wp248_cpt {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp248-cpt-i18n.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp248-cpt-admin.php';
-
-		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'assets/class-wp248-cpt-public.php';
+
+		/**
+		 * Loading modules
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/services.php';
 
 		$this->loader = new wp248_cpt_Loader();
 
@@ -144,18 +144,24 @@ class wp248_cpt {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
+	 * Register all of the hooks related to the modules and admin area functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
+	private function define_modules_hooks() {
 
-		$plugin_admin = new wp248_cpt_Admin( $this->get_plugin_name(), $this->get_version() );
+		/** Modules setup */
+		$plugin_module_services = new cpt_services($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_module_services, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_module_services, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'init', $plugin_module_services, 'module_actions_init' );
+		$this->loader->add_action( 'admin_init', $plugin_module_services, 'module_actions_admin_init' );
+		$this->loader->add_action( 'admin_init', $plugin_module_services, 'module_actions_admin_menu' );
+
 
 	}
 
