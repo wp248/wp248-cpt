@@ -1,13 +1,12 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
  * @link       wp248.com
  * @since      0.0.1
  *
- * @package    cpt_services
- * @subpackage cpt_services/includes/modules
+ * @package    cpt_tech_terms
+ * @subpackage cpt_tech_terms/includes/modules
  */
 
 /**
@@ -15,12 +14,12 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    cpt_services
- * @subpackage cpt_services/includes/modules
+ * @package    cpt_tech_terms
+ * @subpackage cpt_tech_terms/includes/modules
  * @author     wp248 <info@wp248.com>
  */
 
-class cpt_services {
+class cpt_tech_terms {
 
 	/**
 	 * The ID of this plugin.
@@ -41,8 +40,26 @@ class cpt_services {
 	private $version;
 
 	/**
+	 * The CSS files for this module.
+	 *
+	 * @since    0.0.1
+	 * @access   private
+	 * @var      string    $module_css    The CSS files.
+	 */
+	private $module_css;
+
+	/**
+	 * The JS files for this module.
+	 *
+	 * @since    0.0.1
+	 * @access   private
+	 * @var      string    $module_js    The JS files.
+	 */
+	private $module_js;
+
+	/**
 	 * Initialize the class and set its properties.
-23	 *
+	23	 *
 	 * @since    0.0.1
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
@@ -51,6 +68,8 @@ class cpt_services {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->module_css = 'css/wp248-cpt-tech_terms.css';
+		$this->module_js = 'js/wp248-cpt-tech_terms.js';
 		$this->load_dependencies();
 
 	}
@@ -66,15 +85,15 @@ class cpt_services {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in cpt_services_Loader as all of the hooks are defined
+		 * defined in cpt_tech_terms_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The cpt_services_Loader will then create the relationship
+		 * The cpt_tech_terms_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp248-cpt-services.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . $this->module_css , array(), $this->version, 'all' );
 
 	}
 
@@ -89,15 +108,15 @@ class cpt_services {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in cpt_services_Loader as all of the hooks are defined
+		 * defined in cpt_tech_terms_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The cpt_services_Loader will then create the relationship
+		 * The cpt_tech_terms_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp248-cpt.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . $this->module_js , array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -123,19 +142,20 @@ class cpt_services {
 	}
 
 	/** Register taxonomy */
-	private function register_taxonomy() {
+	private function register_taxonomy()
+	{
 
 		/**
-		 * Taxonomy: Services Category.
+		 * Taxonomy: Definition Categories.
 		 */
 
 		$labels = [
-			"name" => __( "Categories", "wp248-cpt" ),
-			"singular_name" => __( "Service Category", "wp248-cpt" ),
+			"name" => __( "Definition Categories", "wp248-cpt" ),
+			"singular_name" => __( "Definition Category", "wp248-cpt" ),
 		];
 
 		$args = [
-			"label" => __( "Category", "wp248-cpt" ),
+			"label" => __( "Definition Categories", "wp248-cpt" ),
 			"labels" => $labels,
 			"public" => true,
 			"publicly_queryable" => true,
@@ -144,30 +164,32 @@ class cpt_services {
 			"show_in_menu" => true,
 			"show_in_nav_menus" => true,
 			"query_var" => true,
-			"rewrite" => [ 'slug' => 'service_category', 'with_front' => true, ],
-			"show_admin_column" => false,
+			"rewrite" => [ 'slug' => 'definition_category', 'with_front' => true,  'hierarchical' => true, ],
+			"show_admin_column" => true,
 			"show_in_rest" => true,
-			"rest_base" => "service_category",
+			"rest_base" => "definition_category",
 			"rest_controller_class" => "WP_REST_Terms_Controller",
 			"show_in_quick_edit" => true,
 		];
-		register_taxonomy( "service_category", [ "services" ], $args );
+		register_taxonomy( "definition_category", [ "definition" ], $args );
+
 	}
 
 	/** create custom post */
 	private function create_custom_post()
 	{
+
 		/**
-		 * Post Type: Services.
+		 * Post Type: Tech Terms.
 		 */
 
 		$labels = [
-			"name" => __( "Services", "wp248-cpt" ),
-			"singular_name" => __( "Service", "wp248-cpt" ),
+			"name" => __( "Tech Terms", "wp248-cpt" ),
+			"singular_name" => __( "Tech Term", "wp248-cpt" ),
 		];
 
 		$args = [
-			"label" => __( "Services", "wp248-cpt" ),
+			"label" => __( "Tech Terms", "wp248-cpt" ),
 			"labels" => $labels,
 			"description" => "",
 			"public" => true,
@@ -176,20 +198,20 @@ class cpt_services {
 			"show_in_rest" => true,
 			"rest_base" => "",
 			"rest_controller_class" => "WP_REST_Posts_Controller",
-			"has_archive" => true,
+			"has_archive" => false,
 			"show_in_menu" => true,
 			"show_in_nav_menus" => true,
 			"delete_with_user" => false,
 			"exclude_from_search" => false,
 			"capability_type" => "post",
 			"map_meta_cap" => true,
-			"hierarchical" => false,
-			"rewrite" => [ "slug" => "services", "with_front" => true ],
+			"hierarchical" => true,
+			"rewrite" => [ "slug" => "definition", "with_front" => true ],
 			"query_var" => true,
-			"supports" => [ "title", "editor", "thumbnail" ],
+			"supports" => [ "title", "editor" ],
 		];
 
-		register_post_type( "services", $args );
+		register_post_type( "definition", $args );
 	}
 
 	/** called for wp add_action  */

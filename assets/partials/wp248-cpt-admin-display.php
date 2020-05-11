@@ -6,7 +6,7 @@
  * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       https://wp248.com
- * @since      1.0.0
+ * @since      0.0.1
  *
  * @package    wp248_cpt
  * @subpackage wp248_cpt/assets/partials

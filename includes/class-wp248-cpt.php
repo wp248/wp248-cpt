@@ -7,7 +7,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       https://wp248.com
- * @since      1.0.0
+ * @since      0.0.1
  *
  * @package    wp248_cpt
  * @subpackage wp248_cpt/includes
@@ -22,7 +22,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since      0.0.1
  * @package    wp248_cpt
  * @subpackage wp248_cpt/includes
  * @author     wp248.com <info@wp248.com>
@@ -33,7 +33,7 @@ class wp248_cpt {
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   protected
 	 * @var      wp248_cpt_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
@@ -42,7 +42,7 @@ class wp248_cpt {
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   protected
 	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
@@ -51,7 +51,7 @@ class wp248_cpt {
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   protected
 	 * @var      string    $version    The current version of the plugin.
 	 */
@@ -64,13 +64,13 @@ class wp248_cpt {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function __construct() {
 		if ( defined( 'WP248_CPT_VERSION' ) ) {
 			$this->version = WP248_CPT_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '0.0.1';
 		}
 		$this->plugin_name = 'wp248-cpt';
 
@@ -94,7 +94,7 @@ class wp248_cpt {
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   private
 	 */
 	private function load_dependencies() {
@@ -118,9 +118,21 @@ class wp248_cpt {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'assets/class-wp248-cpt-public.php';
 
 		/**
+		 * Loading modules Setting first
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/settings.php';
+
+		/**
 		 * Loading modules
 		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/customers_speak.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/jobs.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/partners.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/portfolios.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/services.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/tech_terms.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/technologies.php';
+
 
 		$this->loader = new wp248_cpt_Loader();
 
@@ -132,7 +144,7 @@ class wp248_cpt {
 	 * Uses the wp248_cpt_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   private
 	 */
 	private function set_locale() {
@@ -143,25 +155,107 @@ class wp248_cpt {
 
 	}
 
+
+
 	/**
 	 * Register all of the hooks related to the modules and admin area functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   private
 	 */
 	private function define_modules_hooks() {
 
+		/** Modules setting  */
+		$plugin_module_setting = new cpt_settings($this->get_plugin_name(), $this->get_version());
+		$this->loader->add_action( 'admin_menu', $plugin_module_setting, 'add_action_add_menu' );
+		$this->loader->add_action( 'admin_init', $plugin_module_setting, 'add_action_admin_init' );
+
 		/** Modules setup */
+		$plugin_module_customers_speak = new cpt_customers_speak($this->get_plugin_name(), $this->get_version());
+		$plugin_module_jobs = new cpt_jobs($this->get_plugin_name(), $this->get_version());
+		$plugin_module_partners = new cpt_partners($this->get_plugin_name(), $this->get_version());
+		$plugin_module_portfolios = new cpt_portfolios($this->get_plugin_name(), $this->get_version());
 		$plugin_module_services = new cpt_services($this->get_plugin_name(), $this->get_version());
+		$plugin_module_tech_terms = new cpt_tech_terms($this->get_plugin_name(), $this->get_version());
+		$plugin_module_technologies = new cpt_technologies($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_module_services, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_module_services, 'enqueue_scripts' );
+		/** Activate only if enabled */
+		if ($plugin_module_setting->is_module_enable('customers_speak'))
+		{
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_customers_speak, 'enqueue_styles');
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_customers_speak, 'enqueue_scripts');
+			/** Module hooks actions */
+			$this->loader->add_action('init', $plugin_module_customers_speak, 'module_actions_init');
+			$this->loader->add_action( 'admin_init', $plugin_module_customers_speak, 'add_action_admin_init' );
+			$this->loader->add_action( 'admin_menu', $plugin_module_customers_speak, 'add_action_add_menu' );
+		}
 
-		$this->loader->add_action( 'init', $plugin_module_services, 'module_actions_init' );
-		$this->loader->add_action( 'admin_init', $plugin_module_services, 'module_actions_admin_init' );
-		$this->loader->add_action( 'admin_init', $plugin_module_services, 'module_actions_admin_menu' );
+		/** Activate only if enabled */
+		if ($plugin_module_setting->is_module_enable('jobs'))
+		{
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_jobs, 'enqueue_styles');
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_jobs, 'enqueue_scripts');
+			/** Module hooks actions */
+			$this->loader->add_action('init', $plugin_module_jobs, 'module_actions_init');
+			$this->loader->add_action( 'admin_init', $plugin_module_jobs, 'add_action_admin_init' );
+			$this->loader->add_action( 'admin_menu', $plugin_module_jobs, 'add_action_add_menu' );
+		}
 
+		/** Activate only if enabled */
+		if ($plugin_module_setting->is_module_enable('partners'))
+		{
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_partners, 'enqueue_styles');
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_partners, 'enqueue_scripts');
+			/** Module hooks actions */
+			$this->loader->add_action('init', $plugin_module_partners, 'module_actions_init');
+			$this->loader->add_action( 'admin_init', $plugin_module_partners, 'add_action_admin_init' );
+			$this->loader->add_action( 'admin_menu', $plugin_module_partners, 'add_action_add_menu' );
+		}
+
+		/** Activate only if enabled */
+		if ($plugin_module_setting->is_module_enable('portfolios'))
+		{
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_portfolios, 'enqueue_styles');
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_portfolios, 'enqueue_scripts');
+			/** Module hooks actions */
+			$this->loader->add_action('init', $plugin_module_portfolios, 'module_actions_init');
+			$this->loader->add_action( 'admin_init', $plugin_module_portfolios, 'add_action_admin_init' );
+			$this->loader->add_action( 'admin_menu', $plugin_module_portfolios, 'add_action_add_menu' );
+		}
+
+		/** Activate only if enabled */
+		if ($plugin_module_setting->is_module_enable('services'))
+		{
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_services, 'enqueue_styles');
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_services, 'enqueue_scripts');
+			/** Module hooks actions */
+			$this->loader->add_action('init', $plugin_module_services, 'module_actions_init');
+			$this->loader->add_action( 'admin_init', $plugin_module_services, 'add_action_admin_init' );
+			$this->loader->add_action( 'admin_menu', $plugin_module_services, 'add_action_add_menu' );
+		}
+
+		/** Activate only if enabled */
+		if ($plugin_module_setting->is_module_enable('tech_terms'))
+		{
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_tech_terms, 'enqueue_styles');
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_tech_terms, 'enqueue_scripts');
+			/** Module hooks actions */
+			$this->loader->add_action('init', $plugin_module_tech_terms, 'module_actions_init');
+			$this->loader->add_action( 'admin_init', $plugin_module_tech_terms, 'add_action_admin_init' );
+			$this->loader->add_action( 'admin_menu', $plugin_module_tech_terms, 'add_action_add_menu' );
+		}
+
+		/** Activate only if enabled */
+		if ($plugin_module_setting->is_module_enable('technologies'))
+		{
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_technologies, 'enqueue_styles');
+			$this->loader->add_action('admin_enqueue_scripts', $plugin_module_technologies, 'enqueue_scripts');
+			/** Module hooks actions */
+			$this->loader->add_action('init', $plugin_module_technologies, 'module_actions_init');
+			$this->loader->add_action( 'admin_init', $plugin_module_technologies, 'add_action_admin_init' );
+			$this->loader->add_action( 'admin_menu', $plugin_module_technologies, 'add_action_add_menu' );
+		}
 
 	}
 
@@ -169,7 +263,7 @@ class wp248_cpt {
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   private
 	 */
 	private function define_public_hooks() {
@@ -184,7 +278,7 @@ class wp248_cpt {
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function run() {
 		$this->loader->run();
@@ -194,7 +288,7 @@ class wp248_cpt {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
@@ -204,7 +298,7 @@ class wp248_cpt {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 * @return    wp248_cpt_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
@@ -214,7 +308,7 @@ class wp248_cpt {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {

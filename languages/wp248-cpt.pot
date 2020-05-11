@@ -1,0 +1,242 @@
+# Copyright (C) 2020 wp248.com
+# This file is distributed under the GPL-3.0++.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP248 CPT 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp248-cpt\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-05-11T22:40:26+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0-alpha\n"
+"X-Domain: wp248-cpt\n"
+
+#. Plugin Name of the plugin
+msgid "WP248 CPT"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/wp248/wp248-cpt"
+msgstr ""
+
+#. Description of the plugin
+msgid "WordPress plugin, Custom Type Posts for: Customers Speak, Jobs, Partners, Portfolios, Services, Tech Terms, Technology, and much more."
+msgstr ""
+
+#. Author of the plugin
+msgid "wp248.com"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://wp248.com"
+msgstr ""
+
+#: includes/modules/customers_speak.php:153
+#: includes/modules/customers_speak.php:158
+msgid "Customer Speaks"
+msgstr ""
+
+#: includes/modules/customers_speak.php:154
+msgid "Customer Speak"
+msgstr ""
+
+#: includes/modules/jobs.php:153
+#: includes/modules/jobs.php:158
+msgid "Job Skillsets"
+msgstr ""
+
+#: includes/modules/jobs.php:154
+msgid "Skillset"
+msgstr ""
+
+#: includes/modules/jobs.php:181
+#: includes/modules/jobs.php:186
+msgid "Job Types"
+msgstr ""
+
+#: includes/modules/jobs.php:182
+msgid "Type"
+msgstr ""
+
+#: includes/modules/jobs.php:209
+#: includes/modules/jobs.php:214
+msgid "Industry(s)"
+msgstr ""
+
+#: includes/modules/jobs.php:210
+msgid "Industry"
+msgstr ""
+
+#: includes/modules/jobs.php:237
+#: includes/modules/jobs.php:242
+msgid "Jobs"
+msgstr ""
+
+#: includes/modules/jobs.php:238
+msgid "Job"
+msgstr ""
+
+#: includes/modules/partners.php:152
+#: includes/modules/partners.php:157
+#: includes/modules/portfolios.php:153
+#: includes/modules/portfolios.php:158
+#: includes/modules/services.php:133
+#: includes/modules/technologies.php:151
+msgid "Categories"
+msgstr ""
+
+#: includes/modules/partners.php:153
+#: includes/modules/services.php:138
+#: includes/modules/technologies.php:156
+msgid "Category"
+msgstr ""
+
+#: includes/modules/partners.php:184
+#: includes/modules/partners.php:189
+msgid "Partners"
+msgstr ""
+
+#: includes/modules/partners.php:185
+msgid "partner"
+msgstr ""
+
+#: includes/modules/portfolios.php:154
+msgid "Portfolio Category"
+msgstr ""
+
+#: includes/modules/portfolios.php:182
+#: includes/modules/portfolios.php:187
+msgid "Skills"
+msgstr ""
+
+#: includes/modules/portfolios.php:183
+msgid "Skill"
+msgstr ""
+
+#: includes/modules/portfolios.php:210
+#: includes/modules/portfolios.php:215
+msgid "Tags"
+msgstr ""
+
+#: includes/modules/portfolios.php:211
+msgid "Tag"
+msgstr ""
+
+#: includes/modules/portfolios.php:243
+#: includes/modules/portfolios.php:248
+msgid "Portfolios"
+msgstr ""
+
+#: includes/modules/portfolios.php:244
+msgid "Portfolio"
+msgstr ""
+
+#: includes/modules/services.php:134
+#: includes/modules/technologies.php:152
+msgid "Service Category"
+msgstr ""
+
+#: includes/modules/services.php:165
+#: includes/modules/services.php:170
+msgid "Services"
+msgstr ""
+
+#: includes/modules/services.php:166
+msgid "Service"
+msgstr ""
+
+#: includes/modules/settings.php:133
+#: includes/modules/settings.php:413
+msgid "Display Options"
+msgstr ""
+
+#: includes/modules/settings.php:140
+msgid "Show Customers Speak"
+msgstr ""
+
+#: includes/modules/settings.php:145
+msgid "Activate this setting to display CPT Customers Speak."
+msgstr ""
+
+#: includes/modules/settings.php:152
+msgid "Show Jobs"
+msgstr ""
+
+#: includes/modules/settings.php:157
+msgid "Activate this setting to display CPT Jobs."
+msgstr ""
+
+#: includes/modules/settings.php:164
+msgid "Show Partners"
+msgstr ""
+
+#: includes/modules/settings.php:169
+msgid "Activate this setting to display CPT Partners."
+msgstr ""
+
+#: includes/modules/settings.php:176
+msgid "Show Portfolios"
+msgstr ""
+
+#: includes/modules/settings.php:181
+msgid "Activate this setting to display CPT Portfolios."
+msgstr ""
+
+#: includes/modules/settings.php:188
+msgid "Show Services"
+msgstr ""
+
+#: includes/modules/settings.php:193
+#: includes/modules/settings.php:215
+msgid "Activate this setting to display CPT Services."
+msgstr ""
+
+#: includes/modules/settings.php:199
+msgid "Show Tech Terms"
+msgstr ""
+
+#: includes/modules/settings.php:204
+msgid "Activate this setting to display CPT Tech Terms."
+msgstr ""
+
+#: includes/modules/settings.php:210
+msgid "Show Technologies"
+msgstr ""
+
+#: includes/modules/settings.php:240
+msgid "Select which CPT module will be activated."
+msgstr ""
+
+#: includes/modules/settings.php:405
+msgid "Settings for WP248 Custom posts"
+msgstr ""
+
+#: includes/modules/technologies.php:183
+msgid "Technologies"
+msgstr ""
+
+#: includes/modules/technologies.php:184
+#: includes/modules/technologies.php:188
+msgid "Technology"
+msgstr ""
+
+#: includes/modules/tech_terms.php:153
+#: includes/modules/tech_terms.php:158
+msgid "Definition Categories"
+msgstr ""
+
+#: includes/modules/tech_terms.php:154
+msgid "Definition Category"
+msgstr ""
+
+#: includes/modules/tech_terms.php:187
+#: includes/modules/tech_terms.php:192
+msgid "Tech Terms"
+msgstr ""
+
+#: includes/modules/tech_terms.php:188
+msgid "Tech Term"
+msgstr ""

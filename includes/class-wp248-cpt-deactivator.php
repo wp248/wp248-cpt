@@ -4,7 +4,7 @@
  * Fired during plugin deactivation
  *
  * @link       https://wp248.com
- * @since      1.0.0
+ * @since      0.0.1
  *
  * @package    wp248_cpt
  * @subpackage wp248_cpt/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.0
+ * @since      0.0.1
  * @package    wp248_cpt
  * @subpackage wp248_cpt/includes
  * @author     wp248.com <info@wp248.com>
@@ -27,7 +27,7 @@ class wp248_cpt_Deactivator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public static function deactivate() {
 
