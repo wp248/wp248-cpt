@@ -68,8 +68,8 @@ class cpt_tech_terms {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->module_css = 'css/wp248-cpt-tech_terms.css';
-		$this->module_js = 'js/wp248-cpt-tech_terms.js';
+		$this->module_css = '../assets/css/wp248-cpt-tech_terms.css';
+		$this->module_js = '../assets/js/wp248-cpt-tech_terms.js';
 		$this->load_dependencies();
 
 	}

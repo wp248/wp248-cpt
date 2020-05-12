@@ -68,8 +68,8 @@ class cpt_jobs {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->module_css = 'css/wp248-cpt-jobs.css';
-		$this->module_js = 'js/wp248-cpt-jobs.js';
+		$this->module_css = '../assets/css/wp248-cpt-jobs.css';
+		$this->module_js = '../assets/js/wp248-cpt-jobs.js';
 		$this->load_dependencies();
 
 	}

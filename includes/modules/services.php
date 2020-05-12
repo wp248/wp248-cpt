@@ -74,7 +74,7 @@ class cpt_services {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp248-cpt-services.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/css/wp248-cpt-services.css', array(), $this->version, 'all' );
 
 	}
 
@@ -97,7 +97,7 @@ class cpt_services {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp248-cpt.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/wp248-cpt.js', array( 'jquery' ), $this->version, false );
 
 	}
 

@@ -68,8 +68,8 @@ class cpt_partners {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->module_css = 'css/wp248-cpt-partners.css';
-		$this->module_js = 'js/wp248-cpt-partners.js';
+		$this->module_css = '../assets/css/wp248-cpt-partners.css';
+		$this->module_js = '../assets/js/wp248-cpt-partners.js';
 		$this->load_dependencies();
 
 	}
