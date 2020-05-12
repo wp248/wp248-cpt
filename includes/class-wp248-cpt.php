@@ -103,35 +103,35 @@ class wp248_cpt {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp248-cpt-loader.php';
+		require_once WP248_CPT_INC . 'class-wp248-cpt-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp248-cpt-i18n.php';
+		require_once WP248_CPT_INC . 'class-wp248-cpt-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'assets/class-wp248-cpt-public.php';
+		require_once WP248_CPT_INC_ASSETS . 'class-wp248-cpt-public.php';
 
 		/**
 		 * Loading modules Setting first
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/settings.php';
+		require_once WP248_CPT_INC_MOD . 'settings.php';
 
 		/**
 		 * Loading modules
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/customers_speak.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/jobs.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/partners.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/portfolios.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/services.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/tech_terms.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/modules/technologies.php';
+		require_once WP248_CPT_INC_MOD . 'customers_speak.php';
+		require_once WP248_CPT_INC_MOD . 'jobs.php';
+		require_once WP248_CPT_INC_MOD . 'partners.php';
+		require_once WP248_CPT_INC_MOD . 'portfolios.php';
+		require_once WP248_CPT_INC_MOD . 'services.php';
+		require_once WP248_CPT_INC_MOD . 'tech_terms.php';
+		require_once WP248_CPT_INC_MOD . 'technologies.php';
 
 
 		$this->loader = new wp248_cpt_Loader();
@@ -256,7 +256,37 @@ class wp248_cpt {
 			$this->loader->add_action( 'admin_init', $plugin_module_technologies, 'add_action_admin_init' );
 			$this->loader->add_action( 'admin_menu', $plugin_module_technologies, 'add_action_add_menu' );
 		}
+		/**
+		echo("<HR>");
+		echo("WP248_CPT_VERSION[".WP248_CPT_VERSION."]<br/>\n");
+		echo("WP248_CPT_PLUGIN[".WP248_CPT_PLUGIN."]<br/>\n");
+		echo("WP248_CPT_ID[".WP248_CPT_ID."]<br/>\n");
 
+		echo("WP248_CPT_DIR[".WP248_CPT_DIR."]<br/>\n");
+		echo("WP248_CPT_URL[".WP248_CPT_URL."]<br/>\n");
+
+		echo("WP248_CPT_INC[".WP248_CPT_INC."]<br/>\n");
+		echo("WP248_CPT_INC_MOD[".WP248_CPT_INC_MOD."]<br/>\n");
+
+		echo("WP248_CPT_ADMIN[".WP248_CPT_ADMIN."]<br/>\n");
+		echo("WP248_CPT_ADMIN_URL[".WP248_CPT_ADMIN_URL."]<br/>\n");
+
+		echo("WP248_CPT_PUBLIC[".WP248_CPT_PUBLIC."]<br/>\n");
+		echo("WP248_CPT_PUBLIC_URL[".WP248_CPT_PUBLIC_URL."]<br/>\n");
+
+		echo("WP248_CPT_DEF_TPL[".WP248_CPT_DEF_TPL."]<br/>\n");
+		echo("WP248_CPT_DEF_TPL_URI[".WP248_CPT_DEF_TPL_URI."]<br/>\n");
+
+		echo("WP248_CPT_TPL[".WP248_CPT_ID."]<br/>\n");
+		echo("WP248_CPT_TPL_URI[".WP248_CPT_ID."]<br/>\n");
+
+		echo("WP248_CPT_ASSETS_CSS[".WP248_CPT_ASSETS_CSS."]<br/>\n");
+		echo("WP248_CPT_ASSETS_JS[".WP248_CPT_ASSETS_JS."]<br/>\n");
+		echo("WP248_CPT_ASSETS_SRC[".WP248_CPT_ASSETS_SRC."]<br/>\n");
+		echo("WP248_CPT_ASSETS_IMG[".WP248_CPT_ASSETS_IMG."]<br/>\n");
+		echo("WP248_CPT_ASSETS_PARTIALS[".WP248_CPT_ASSETS_PARTIALS."]<br/>\n");
+		echo("<HR>");
+		*/
 	}
 
 	/**
