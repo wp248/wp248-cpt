@@ -74,7 +74,7 @@ class cpt_services {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, WP248_CPT_ASSETS_CSS . 'wp248-cpt-services.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, WP248_CPT_ASSETS_CSS . 'wp248-cpt-services.min.css', array(), $this->version, 'all' );
 
 	}
 

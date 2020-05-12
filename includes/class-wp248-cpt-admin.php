@@ -73,7 +73,7 @@ class wp248_cpt_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, WP248_CPT_ASSETS_CSS . 'wp248-cpt-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, WP248_CPT_ASSETS_CSS . 'wp248-cpt-admin.min.css', array(), $this->version, 'all' );
 
 	}
 

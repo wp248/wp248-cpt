@@ -68,7 +68,7 @@ class cpt_customers_speak {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->module_css = WP248_CPT_ASSETS_CSS . 'wp248-cpt-customers_speak.css';
+		$this->module_css = WP248_CPT_ASSETS_CSS . 'wp248-cpt-customers_speak.min.css';
 		$this->module_js = WP248_CPT_ASSETS_JS . 'wp248-cpt-customers_speak.js';
 		$this->load_dependencies();
 
