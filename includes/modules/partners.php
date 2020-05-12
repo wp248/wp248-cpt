@@ -93,7 +93,7 @@ class cpt_partners {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . $this->module_css , array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name,  $this->module_css , array(), $this->version, 'all' );
 
 	}
 
@@ -116,7 +116,7 @@ class cpt_partners {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . $this->module_js , array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name,  $this->module_js , array( 'jquery' ), $this->version, false );
 
 	}
 
