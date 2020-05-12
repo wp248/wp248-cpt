@@ -69,7 +69,7 @@ class cpt_technologies {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->module_css = WP248_CPT_ASSETS_CSS . 'wp248-cpt-technologies.min.css';
-		$this->module_js = WP248_CPT_ASSETS_JS . 'wp248-cpt-technologies.js';
+		$this->module_js = WP248_CPT_ASSETS_JS . 'wp248-cpt-technologies.min.js';
 		$this->load_dependencies();
 
 	}

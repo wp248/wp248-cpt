@@ -96,7 +96,7 @@ class wp248_cpt_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, WP248_CPT_ASSETS_JS . 'wp248-cpt-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, WP248_CPT_ASSETS_JS . 'wp248-cpt-admin.min.js', array( 'jquery' ), $this->version, false );
 
 	}
 
